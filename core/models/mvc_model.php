@@ -747,6 +747,15 @@ class MvcModel {
 		}
 	}
 
+	public function to_url($object)
+  {
+    $slug = $object->post_name;
+    $slug = preg_replace( '/[^\w]/', '-', $slug );
+    $slug = preg_replace( '/[-]+/', '-', $slug );
+    $slug = strtolower( $slug );
+    return implode("/", array(MvcInflector::pluralize(strtolower($this->name)), $object->ID, $slug));
+  }
+
 	protected function object_to_array($data) {
 		if (is_object($data)) {
 			return get_object_vars($data);
