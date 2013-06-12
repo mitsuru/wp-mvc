@@ -6,7 +6,7 @@ class MvcDispatcher {
 
 	function dispatch($options=array()) {
 		
-		MvcDispatcher::$controller = $controller_name = $options['controller'];
+		$controller_name = $options['controller'];
 
 		$action = $options['action'];
 		$params = $options;
@@ -34,6 +34,8 @@ class MvcDispatcher {
 		
 		$controller->params = $params;
 		$controller->set('this', $controller);
+		MvcDispatcher::$controller = $controller;
+		
 		if (!empty($controller->before)) {
 			foreach ($controller->before as $method) {
 				$controller->{$method}();
