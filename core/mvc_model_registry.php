@@ -4,7 +4,7 @@ class MvcModelRegistry {
 
 	var $__models = array();
 
-	private function &get_instance() {
+	private static function &get_instance() {
 		static $instance = array();
 		if (!$instance) {
 			$instance[0] = new MvcModelRegistry();
@@ -12,7 +12,7 @@ class MvcModelRegistry {
 		return $instance[0];
 	}
 
-	public function &get_model($key) {
+	public static function &get_model($key) {
 		$_this =& self::get_instance();
 		$key = MvcInflector::camelize($key);
 		$return = false;
@@ -25,13 +25,13 @@ class MvcModelRegistry {
 		return $return;
 	}
 
-	public function &get_models() {
+	public static function &get_models() {
 		$_this =& self::get_instance();
 		$return =& $_this->__models;
 		return $return;
 	}
 	
-	public function add_model($key, &$model) {
+	public static function add_model($key, &$model) {
 		$_this =& self::get_instance();
 		$key = MvcInflector::camelize($key);
 		if (!isset($_this->__models[$key])) {
