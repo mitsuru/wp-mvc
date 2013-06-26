@@ -135,7 +135,7 @@ class MvcFileIncluder {
 	
 	public function require_php_files_in_directory($directory, $options=array()) {
 	
-		$filenames = $this->get_php_files_in_directory($directory);
+		$filenames = $this->get_php_files_in_directory($directory, $options);
 		$filepaths = array();
 		
 		foreach ($filenames as $filename) {
