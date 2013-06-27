@@ -121,16 +121,22 @@ class MvcFileIncluder {
 		
 		$filenames = array();
 		if (is_dir($directory)) {
-			if (isset($options['recursive'])) {
+			if (isset($options["recursive"]) && $options["recursive"]) {
 				$filenames = $this->scandir_recursive($directory);
 			} else {
 				$filenames = scandir($directory);
 			}
 			$filenames = array_filter($filenames, array($this, 'is_php_file'));
 		}
+
+		// Recursive seems to keep the directory path in the filename,
+		// thus breaking when we attempt to include the files
+		foreach($filenames as $key => $value)
+		{
+			$filenames[$key] = str_replace($directory, "", $value);
+		}
 		
 		return $filenames;
-	
 	}
 	
 	public function require_php_files_in_directory($directory, $options=array()) {
