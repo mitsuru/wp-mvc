@@ -15,6 +15,10 @@ class MvcVariableRender extends MvcRender {
     {
       require $filepath;
     }
+    else
+    {
+      MvcError::notice("Attempted to render non-existant file: " . $filepath);
+    }
 	}
 
 }
