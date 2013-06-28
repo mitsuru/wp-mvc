@@ -17,7 +17,7 @@ abstract class MvcLoader {
 		}
 		
 		$this->core_path = MVC_CORE_PATH;
-		
+
 		$this->load_core();
 		$this->load_plugins();
 		
