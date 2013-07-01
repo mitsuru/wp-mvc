@@ -15,7 +15,7 @@ class MvcError {
 		self::write('notice', $message);
 	}
 	
-	private function write($type_key, $message) {
+	private static function write($type_key, $message) {
 	
 		$type_name = self::get_type($type_key);
 		
@@ -35,7 +35,7 @@ class MvcError {
 	
 	}
 	
-	private function get_type($type_key) {
+	private static function get_type($type_key) {
 	
 		$types = array(
 			'fatal' => 'Fatal Error',
@@ -47,7 +47,7 @@ class MvcError {
 	
 	}
 	
-	private function get_context() {
+	private static function get_context() {
 	
 		$backtrace = debug_backtrace();
 		

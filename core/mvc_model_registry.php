@@ -13,26 +13,26 @@ class MvcModelRegistry {
 	}
 
 	public static function &get_model($key) {
-		$_this =& self::get_instance();
+		$_this = self::get_instance();
 		$key = MvcInflector::camelize($key);
 		$return = false;
 		if (isset($_this->__models[$key])) {
-			$return =& $_this->__models[$key];
+			$return = $_this->__models[$key];
 		} else if (class_exists($key)) {
 			$_this->__models[$key] = new $key();
-			$return =& $_this->__models[$key];
+			$return = $_this->__models[$key];
 		}
 		return $return;
 	}
 
 	public static function &get_models() {
-		$_this =& self::get_instance();
-		$return =& $_this->__models;
+		$_this = self::get_instance();
+		$return = $_this->__models;
 		return $return;
 	}
 	
 	public static function add_model($key, &$model) {
-		$_this =& self::get_instance();
+		$_this = self::get_instance();
 		$key = MvcInflector::camelize($key);
 		if (!isset($_this->__models[$key])) {
 			$_this->__models[$key] = $model;
