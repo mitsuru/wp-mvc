@@ -23,8 +23,7 @@ class MvcHtmlHelper extends MvcHelper {
 			'object' => $object
 		);
 		$options = array_merge($defaults, $options);
-		$url = MvcRouter::public_url($options);
-		return $url;
+		return MvcRouter::public_url($options);
 	}
 	
 	public function object_link($object, $options=array()) {
