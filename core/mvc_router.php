@@ -15,6 +15,7 @@ class MvcRouter {
 		$controller = $options['controller'];
 		$action = $options['action'];
 		$matched_route = null;
+
 		if (!empty($options['object']) && is_object($options['object'])) {
 			if (!empty($options['object']->__model_name) && !$controller) {
 				$model_name = $options['object']->__model_name;
