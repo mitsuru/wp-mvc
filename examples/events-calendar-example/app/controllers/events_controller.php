@@ -1,6 +1,6 @@
 <?php
 
-class EventsController extends MvcPublicController {
+class EventsController extends JcPublicController {
 
 	// Overwrite the default index() method to include the 'is_public' => true condition
 	public function index() {

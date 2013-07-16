@@ -50,7 +50,8 @@ class MvcPublicController extends MvcController {
 		$this->set_page_title();
 	}
 	
-	public function set_wp_title($original_title) {
+	public function set_wp_title($original_title)
+	{
 		$separator = ' | ';
 		$controller_name = MvcInflector::titleize($this->name);
 		$object_name = null;

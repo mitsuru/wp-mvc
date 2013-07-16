@@ -1,6 +1,6 @@
 <?php
 
-class SpeakersController extends MvcPublicController {
+class SpeakersController extends JcPublicController {
 	
 }
 

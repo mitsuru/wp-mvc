@@ -48,6 +48,7 @@ class MvcInflector {
 			'money' => 'monies',
 			'mongoose' => 'mongooses',
 			'move' => 'moves',
+			'music' => 'music',
 			'mythos' => 'mythoi',
 			'niche' => 'niches',
 			'numen' => 'numina',

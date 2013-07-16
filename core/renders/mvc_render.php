@@ -47,7 +47,7 @@ class MvcRender {
     }
     catch(Exception $e)
     {
-      $res = parent::__call($method, $args);
+      MvcError::notice($e->getMessage());
     }
 
     return $res;
