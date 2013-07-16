@@ -126,12 +126,12 @@ class MvcRouter {
 	}
 
 	public static function public_connect($route, $defaults=array()) {
-		$_this =& MvcRouter::get_instance();
+		$_this = MvcRouter::get_instance();
 		$_this->add_public_route($route, $defaults);
 	}
 	
 	public static function admin_ajax_connect($route) {
-		$_this =& MvcRouter::get_instance();
+		$_this = MvcRouter::get_instance();
 		$_this->add_admin_ajax_route($route);
 	}
 
@@ -148,24 +148,24 @@ class MvcRouter {
 	}
 
 	public static function &get_public_routes() {
-		$_this =& self::get_instance();
-		$return =& $_this->routes['public'];
+		$_this = self::get_instance();
+		$return = $_this->routes['public'];
 		return $return;
 	}
 
 	public static function &get_admin_ajax_routes() {
-		$_this =& self::get_instance();
-		$return =& $_this->routes['admin_ajax'];
+		$_this = self::get_instance();
+		$return = $_this->routes['admin_ajax'];
 		return $return;
 	}
 	
 	public static function add_public_route($route, $defaults) {
-		$_this =& self::get_instance();
+		$_this = self::get_instance();
 		$_this->routes['public'][] = array($route, $defaults);
 	}
 	
 	public static function add_admin_ajax_route($route) {
-		$_this =& self::get_instance();
+		$_this = self::get_instance();
 		if (empty($route['wp_action'])) {
 			$route['wp_action'] = $route['controller'].'_'.$route['action'];
 		}
