@@ -78,7 +78,6 @@ class MvcModel {
 		foreach ($data as $field => $value) {
 			$object->$field = $value;
 		}
-		$object->__model_name = str_replace("mvc_", "", $data["post_type"]);
 
 		$object = $this->process_objects($object);
 		return $object;
