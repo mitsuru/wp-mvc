@@ -1,6 +1,6 @@
 <?php
 
-class VenuesController extends MvcPublicController {
+class VenuesController extends JcPublicController {
 	
 	public function show() {
 	

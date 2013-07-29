@@ -6,6 +6,7 @@ class MvcModelObject {
 	private $__settings = null;
 	
 	function __construct($model) {
+		
 		$this->__settings = array();
 		$this->__settings['properties'] = $model->properties;
 		$this->__settings['model'] = array(
