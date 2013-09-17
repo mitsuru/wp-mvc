@@ -151,7 +151,7 @@ abstract class MvcLoader {
 		}
 		return $permalink;
 	}
-	
+
 	public function register_widgets() {
 		foreach ($this->plugin_app_paths as $plugin_app_path) {
 			$directory = $plugin_app_path.'widgets/';
