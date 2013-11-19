@@ -55,7 +55,7 @@ class MvcDispatcher {
 	
 	}
 	
-	private function escape_params($params) {
+	private static function escape_params($params) {
 		if (is_array($params)) {
 			foreach ($params as $key => $value) {
 				if (is_string($value)) {
