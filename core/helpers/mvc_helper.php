@@ -29,7 +29,7 @@ class MvcHelper {
 		return esc_attr($string);
 	}
 	
-	public function attributes_html($attributes, $valid_attributes_array_or_tag) {
+	public static function attributes_html($attributes, $valid_attributes_array_or_tag) {
 	
 		$event_attributes = array(
 			'standard' => array(
@@ -207,7 +207,7 @@ class MvcHelper {
 	
 	// To do: move this into an MvcUtilities class (?)
 	
-	private function array_flatten($array) {
+	private static function array_flatten($array) {
 
 		foreach ($array as $key => $value){
 			$array[$key] = (array)$value;

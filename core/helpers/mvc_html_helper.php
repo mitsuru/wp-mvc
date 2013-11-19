@@ -2,7 +2,7 @@
 
 class MvcHtmlHelper extends MvcHelper {
 	
-	public function link($text, $url, $options=array()) {
+	public static function link($text, $url, $options=array()) {
 		if (is_array($url)) {
 			$url = MvcRouter::public_url($url);
 		}
@@ -16,7 +16,7 @@ class MvcHtmlHelper extends MvcHelper {
 		return $html;
 	}
 	
-	public function object_url($object, $options=array()) {
+	public static function object_url($object, $options=array()) {
 		$defaults = array(
 			'id' => $object->__id,
 			'action' => 'show',
@@ -26,7 +26,7 @@ class MvcHtmlHelper extends MvcHelper {
 		return MvcRouter::public_url($options);
 	}
 	
-	public function object_link($object, $options=array()) {
+	public static function object_link($object, $options=array()) {
 		$url = self::object_url($object, $options);
 		$text = empty($options['text']) ? $object->__name : $options['text'];
 		return self::link($text, $url, $options);
