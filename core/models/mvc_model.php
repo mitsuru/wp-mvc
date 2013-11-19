@@ -759,7 +759,7 @@ class MvcModel {
     $slug = preg_replace( '/[^\w]/', '-', $slug );
     $slug = preg_replace( '/[-]+/', '-', $slug );
     $slug = strtolower( $slug );
-    return implode("/", array(MvcInflector::pluralize(strtolower($this->name)), $object->ID, $slug));
+    return implode("/", array(MvcInflector::pluralize(strtolower($this->name)), $object->{$this->primary_key}, $slug));
   }
 
 	protected function object_to_array($data) {
