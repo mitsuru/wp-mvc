@@ -4,7 +4,7 @@ class MvcDispatcher {
 
 	public static $controller;
 
-	function dispatch($options=array()) {
+	public static function dispatch($options=array()) {
 		
 		$controller_name = $options['controller'];
 
