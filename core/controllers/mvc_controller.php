@@ -365,11 +365,15 @@ class MvcController {
 		die();
 
 	}
+
+	public function redirect404() {
+		status_header(404);
+		nocache_headers();
+		include( get_404_template() );
+	}
 	
 	public function current_url() {
 		return $_SERVER['REQUEST_URI'];
 	}
 
 }
-
-?>
