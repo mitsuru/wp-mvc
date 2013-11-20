@@ -3,7 +3,7 @@
 class MvcFormTagsHelper extends MvcHelper {
 	
 	// Generalized method that chooses the appropriate input type based on the SQL type of the field
-	public function input($field_name, $options=array()) {
+	public static function input($field_name, $options=array()) {
 		$defaults = array(
 			'id' => self::input_id($field_name),
 			'name' => self::input_name($field_name),
@@ -17,7 +17,7 @@ class MvcFormTagsHelper extends MvcHelper {
 		return $html;
 	}
 	
-	public function text_input($field_name, $options=array()) {
+	public static function text_input($field_name, $options=array()) {
 		$defaults = array(
 			'id' => self::input_id($field_name),
 			'name' => self::input_name($field_name),
@@ -31,7 +31,7 @@ class MvcFormTagsHelper extends MvcHelper {
 		return $html;
 	}
 	
-	public function textarea_input($field_name, $options=array()) {
+	public static function textarea_input($field_name, $options=array()) {
 		$defaults = array(
 			'id' => self::input_id($field_name),
 			'name' => self::input_name($field_name)
@@ -44,7 +44,7 @@ class MvcFormTagsHelper extends MvcHelper {
 		return $html;
 	}
 	
-	public function checkbox_input($field_name, $options=array()) {
+	public static function checkbox_input($field_name, $options=array()) {
 		$defaults = array(
 			'id' => self::input_id($field_name),
 			'name' => self::input_name($field_name),
@@ -70,7 +70,7 @@ class MvcFormTagsHelper extends MvcHelper {
 		return $html;
 	}
 	
-	public function hidden_input($field_name, $options=array()) {
+	public static function hidden_input($field_name, $options=array()) {
 		$defaults = array(
 			'id' => self::input_id($field_name),
 			'name' => self::input_name($field_name),
@@ -82,14 +82,14 @@ class MvcFormTagsHelper extends MvcHelper {
 		return $html;
 	}
 	
-	public function select_input($field_name, $options=array()) {
+	public static function select_input($field_name, $options=array()) {
 		$html = self::before_input($field_name, $options);
 		$html .= self::select_tag($field_name, $options);
 		$html .= self::after_input($field_name, $options);
 		return $html;
 	}
 	
-	public function select_tag($field_name, $options=array()) {
+	public static function select_tag($field_name, $options=array()) {
 		$defaults = array(
 			'id' => self::input_id($field_name),
 			'name' => self::input_name($field_name),
@@ -117,7 +117,7 @@ class MvcFormTagsHelper extends MvcHelper {
 		return $html;
 	}
 	
-	public function button($text, $options=array()) {
+	public static function button($text, $options=array()) {
 		$defaults = array(
 			'id' => self::input_id($text),
 			'type' => 'button',
@@ -129,7 +129,7 @@ class MvcFormTagsHelper extends MvcHelper {
 		return $html;
 	}
 	
-	private function before_input($field_name, $options) {
+	private static function before_input($field_name, $options) {
 		$defaults = array(
 			'before' => ''
 		);
@@ -141,7 +141,7 @@ class MvcFormTagsHelper extends MvcHelper {
 		return $html;
 	}
 	
-	private function after_input($field_name, $options) {
+	private static function after_input($field_name, $options) {
 		$defaults = array(
 			'after' => ''
 		);
@@ -150,11 +150,11 @@ class MvcFormTagsHelper extends MvcHelper {
 		return $html;
 	}
 	
-	private function input_id($field_name) {
+	private static function input_id($field_name) {
 		return $field_name;
 	}
 	
-	private function input_name($field_name) {
+	private static function input_name($field_name) {
 		return $field_name;
 	}
 
