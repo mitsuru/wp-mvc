@@ -1,6 +1,6 @@
 <?php echo "<?php\n"; ?>
 
-class <?php echo $name_pluralized ?>Controller extends JcPublicController {
+class <?php echo $name_pluralized ?>Controller extends MvcPublicController {
 	
 }
 
