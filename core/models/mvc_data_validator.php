@@ -1,12 +1,41 @@
 <?php
 
 class MvcDataValidator {
+  protected $errors = array();
+
+  public function __construct() {
+    $this->reset();
+  }
+
+  public function reset() {
+    $this->errors = array();
+  }
+
+  public function get_errors() {
+    return $this->errors;
+  }
+
+  public function get_error($field) {
+    if (isset($this->errors[$field])) {
+      return $this->errors[$field];
+    } else {
+      return false;
+    }
+  }
+
+  protected function add_error($field, $error) {
+    if (isset($this->errors[$field])) {
+      $this->errors[$field] = array_push($error);
+    } else {
+      $this->errors[$field] = array($error);
+    }
+  }
 
 	private $common_patterns = array(
 		'hostname' => '(?:[a-z0-9][-a-z0-9]*\.)*(?:[a-z0-9][-a-z0-9]{0,62})\.(?:(?:[a-z]{2}\.)?[a-z]{2,4}|museum|travel)'
 	);
 	
-	public function validate($field, $value, $rule) {
+	public function validate($field, $value, $rule, $values = array()) {
 		if (is_string($rule)) {
 			if (method_exists($this, $rule)) {
 				$result = $this->{$rule}($value);
@@ -16,6 +45,7 @@ class MvcDataValidator {
 				$message = $result;
 				$message = $this->process_message($message, $field);
 				$error = new MvcDataValidationError($field, $message);
+        $this->add_error($field, $error);
 				return $error;
 			} else {
 				MvcError::fatal('The validation rule "'.$rule.'" wasn\'t found.');
@@ -23,13 +53,13 @@ class MvcDataValidator {
 		}
 		if (is_array($rule)) {
 			if(!empty($rule['pattern']) || !empty($rule['rule'])) {
-				return $this->validate_using_array_rule($field, $value, $rule);
+				return $this->validate_using_array_rule($field, $value, $rule, $values);
 			}
 		}
 		MvcError::fatal('The validation rule "'.print_r($rule, true).'" wasn\'t defined correctly.');
 	}
 	
-	private function validate_using_array_rule($field, $value, $rule) {
+	private function validate_using_array_rule($field, $value, $rule, $values=array()) {
 		$message = '';
 		if (isset($rule['required']) && !$rule['required']) {
 			if (empty($value)) {
@@ -45,6 +75,12 @@ class MvcDataValidator {
 				$message = $result;
 			}
 		}
+    if (isset($rule['callback'])) {
+      $result = call_user_func($rule['callback'], $field, $value, $rule, $values);
+      $valid = $result === true ? true : false;
+      $message = $result;
+    }
+
 		if ($valid) {
 			return true;
 		}
@@ -53,6 +89,7 @@ class MvcDataValidator {
 		}
 		$message = $this->process_message($message, $field);
 		$error = new MvcDataValidationError($field, $message);
+    $this->add_error($field, $error);
 		return $error;
 	}
 	
@@ -140,6 +177,9 @@ class MvcDataValidator {
 			$this->common_patterns['ipv4'] = $pattern;
 		}
 	}
+
+	public function validate_callback($field, $value, $rule, $values = array()) {
+  }
 
 }
 

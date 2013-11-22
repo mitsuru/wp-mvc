@@ -455,19 +455,21 @@ class MvcModel {
 		}
 	}
 
-	private function validate_data($data) {
+	public function validate_data($data) {
 		$rules = $this->validate;
 		if (!empty($rules)) {
 			foreach ($rules as $field => $rule) {
 				if (isset($data[$field])) {
-					$valid = $this->data_validator->validate($field, $data[$field], $rule);
-					if ($valid !== true) {
-						return $valid;
-					}
+					$valid = $this->data_validator->validate($field, $data[$field], $rule, $data);
 				}
 			}
 		}
-		return true;
+    $errors = $this->data_validator->get_errors();
+    if (count($errors) > 0) {
+      return $errors;
+    } else {
+      return true;
+    }
 	}
 
 	protected function process_objects($objects, $options=array()) {
@@ -784,7 +786,8 @@ class MvcModel {
 				return $object;
 			}
 		}
-		MvcError::fatal('Undefined method: '.$class.'::'.$method.'.');
+    echo $method;
+		MvcError::fatal('Undefined method: '.__CLASS__.'::'.$method.'.');
 	}
 
 }
