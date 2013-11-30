@@ -367,9 +367,10 @@ class MvcController {
 	}
 
 	public function redirect404() {
-		status_header(404);
-		nocache_headers();
-		include( get_404_template() );
+    status_header(404);
+    nocache_headers();
+    include( get_404_template() );
+    die();
 	}
 	
 	public function current_url() {
